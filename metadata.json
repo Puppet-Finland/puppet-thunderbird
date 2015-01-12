@@ -1,0 +1,12 @@
+{
+  "name": "puppetfinland-thunderbird",
+  "version": "0.1.0",
+  "author": "Puppet-Finland team",
+  "license": "BSD license",
+  "summary": "Setup Mozilla Thunderbird",
+  "source": "https://github.com/Puppet-Finland/thunderbird.git",
+  "project_page": "https://github.com/Puppet-Finland/thunderbird",
+  "dependencies": [
+    { "name": "rismoney/chocolatey", "version_requirement": ">= 0.4.1" },
+  ]
+}
