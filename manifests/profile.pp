@@ -6,7 +6,9 @@
 #
 define thunderbird::profile
 (
-    $username = $title
+    $username = $title,
+    $accounts,
+    $defaultaccount
 )
 {
     include os::params
@@ -83,4 +85,14 @@ define thunderbird::profile
         tag => 'thunderbird-profile',        
     }
 
+    # Ensure we're ready to modify user.js
+    File <| tag == thunderbird-profile |>
+    Concat <| tag == thunderbird-profile |>
+
+    concat::fragment { "thunderbird-user.js-${username}-accountmananager":
+        target => "thunderbird-user.js-${username}",
+        content => template('thunderbird/accountmanager.js.erb'),
+        owner => $username,
+        mode => $::thunderbird::params::file_perms,
+    }
 }

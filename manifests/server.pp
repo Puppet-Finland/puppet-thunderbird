@@ -8,6 +8,7 @@ define thunderbird::server
     $host,
     $port = 993,
     $type = 'imap',
+    $sockettype = 3,
     $is_gmail = 'false'
 )
 {

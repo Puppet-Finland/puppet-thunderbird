@@ -5,12 +5,14 @@
 #
 class thunderbird::config
 (
+    $smtpservernames,
     $servers,
     $smtpservers,
     $profiles,
     $identities,
     $serverlogins,
-    $smtpserverlogins
+    $smtpserverlogins,
+    $accounts
 )
 {
 
@@ -29,6 +31,14 @@ class thunderbird::config
         require => Class['thunderbird::install'],
     }
 
+    concat::fragment { "thunderbird-smtpservernames.js-${smtpservernames}":
+        target => 'thunderbird-syspref.js',
+        content => template('thunderbird/smtpservernames.js.erb'),
+        owner => $::os::params::adminuser,
+        group => $::os::params::admigroup,
+        mode => $::thunderbird::params::file_perms,
+    }
+
     # Generate system-wide settings
     create_resources('thunderbird::server', $servers)
     create_resources('thunderbird::smtpserver', $smtpservers)
@@ -38,4 +48,5 @@ class thunderbird::config
     create_resources('thunderbird::identity', $identities)
     create_resources('thunderbird::serverlogin', $serverlogins)
     create_resources('thunderbird::smtpserverlogin', $smtpserverlogins)
+    create_resources('thunderbird::account', $accounts)
 }

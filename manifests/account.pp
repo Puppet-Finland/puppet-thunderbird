@@ -7,7 +7,7 @@ define thunderbird::account
 (
     $username,
     $server,
-    $identity
+    $identities
 )
 {
 
