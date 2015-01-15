@@ -18,10 +18,6 @@ define thunderbird::identity
 
     $id = $title
 
-    # Ensure we're ready to modify user.js
-    File <| tag == thunderbird-profile |>
-    Concat <| tag == thunderbird-profile |>
-
     concat::fragment { "thunderbird-user.js-${username}-identity-${id}":
         target => "thunderbird-user.js-${username}",
         content => template('thunderbird/identity.js.erb'),

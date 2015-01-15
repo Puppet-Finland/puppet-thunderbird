@@ -24,14 +24,14 @@ define thunderbird::profile
         $profile_dir = "${profiles_dir}\\${profilename}"
         $profiles_ini = "${roaming_config_dir}\\profiles.ini"
 
-        @file { "thunderbird-local_config_dir-${username}":
+        file { "thunderbird-local_config_dir-${username}":
             name => $local_config_dir,
             ensure => directory,
             owner => $username,
             tag => 'thunderbird-profile',
         }
 
-        @file { "thunderbird-roaming_config_dir-${username}":
+        file { "thunderbird-roaming_config_dir-${username}":
             name => $roaming_config_dir,
             ensure => directory,
             owner => $username,
@@ -46,7 +46,7 @@ define thunderbird::profile
     }
 
     # Create user's profiles directory
-    @file { "thunderbird-profiles-${username}":
+    file { "thunderbird-profiles-${username}":
         name => $profiles_dir,
         ensure => directory,
         owner => $username,
@@ -55,7 +55,7 @@ define thunderbird::profile
     }
 
     # Create user's profile.ini
-    @file { "thunderbird-profiles.ini-${username}":
+    file { "thunderbird-profiles.ini-${username}":
         name => "${profiles_ini}",
         content => template('thunderbird/profiles.ini.erb'),
         owner => $username,
@@ -65,7 +65,7 @@ define thunderbird::profile
     }
 
     # Create a directory for this particular profile
-    @file { "thunderbird-profile-${username}-${profilename}":
+    file { "thunderbird-profile-${username}-${profilename}":
         name => "${profile_dir}",
         ensure => directory,
         owner => $username,
@@ -75,7 +75,7 @@ define thunderbird::profile
     }
 
     # Create the user.js file that overrides any settings in prefs.js on startup
-    @concat { "thunderbird-user.js-${username}":
+    concat { "thunderbird-user.js-${username}":
         path => "${profile_dir}/user.js",
         ensure => present,
         owner => $username,
@@ -84,10 +84,6 @@ define thunderbird::profile
         require => File["thunderbird-profile-${username}-${profilename}"],
         tag => 'thunderbird-profile',        
     }
-
-    # Ensure we're ready to modify user.js
-    File <| tag == thunderbird-profile |>
-    Concat <| tag == thunderbird-profile |>
 
     concat::fragment { "thunderbird-user.js-${username}-accountmananager":
         target => "thunderbird-user.js-${username}",

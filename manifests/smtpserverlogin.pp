@@ -16,10 +16,6 @@ define thunderbird::smtpserverlogin
 
     $id = $smtpserver
 
-    # Ensure we're ready to modify user.js
-    File <| tag == thunderbird-profile |>
-    Concat <| tag == thunderbird-profile |>
-
     concat::fragment { "thunderbird-user.js-${username}-smtpserverlogin-${id}":
         target => "thunderbird-user.js-${username}",
         content => template('thunderbird/smtpserverlogin.js.erb'),
