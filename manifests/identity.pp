@@ -3,6 +3,19 @@
 #
 # Configure a user identity
 #
+# == Parameters
+#
+# [*username*]
+#   User's system username.
+# [*fullname*]
+#   User's full name, e.g. "John Doe".
+# [*organization*]
+#   The organization this user/identity belongs to.
+# [*smtpserver*]
+#   The SMTP server this user/identity users.
+# [*useremail*]
+#   The email address of this user/identity.
+#
 define thunderbird::identity
 (
     $username,
@@ -13,7 +26,6 @@ define thunderbird::identity
 )
 {
 
-    include os::params
     include thunderbird::params
 
     $id = $title

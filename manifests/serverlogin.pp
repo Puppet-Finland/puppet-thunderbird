@@ -1,7 +1,23 @@
 #
 # == Define: thunderbird::serverlogin
 #
-# Set up login details for a particular user and a particular server.
+# Set up login details for a particular user and a particular IMAP/POP server.
+#
+# == Parameters
+#
+# [*username*]
+#   User's system username.
+# [*server*]
+#   The server identifier to bind this login information with. See 
+#   thunderbird::server for details.
+# [*server_name*]
+#   The server's display name in Thunderbird.
+# [*server_realusername*]
+#   User's login name on the IMAP/POP server. Possibly redundant, but seems to 
+#   get set.
+# [*server_username*]
+#   User's login name on the IMAP/POP server. Possibly redundant, but seems to 
+#   get set.
 #
 define thunderbird::serverlogin
 (
@@ -16,7 +32,7 @@ define thunderbird::serverlogin
     include os::params
     include thunderbird::params
 
-    $id = $server
+    $id = $title
 
     concat::fragment { "thunderbird-user.js-${username}-serverlogin-${id}":
         target => "thunderbird-user.js-${username}",

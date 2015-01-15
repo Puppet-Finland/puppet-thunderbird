@@ -3,6 +3,16 @@
 #
 # Configure an (email)account for a user
 #
+# == Parameters
+#
+# [*username*]
+#   User's system username.
+# [*server*]
+#   The server identifier (see thunderbird::server) to tie into this account.
+# [*identities*]
+#   A comma-separated list (no spaces!) of identities (see 
+#   thunderbird::identities) to tie into this account.
+#
 define thunderbird::account
 (
     $username,
@@ -11,7 +21,6 @@ define thunderbird::account
 )
 {
 
-    include os::params
     include thunderbird::params
 
     $id = $title

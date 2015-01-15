@@ -4,6 +4,17 @@
 # Create a Mozilla Thunderbird profile for a user. The profile name is hardcoded 
 # to keep things manageable.
 #
+# == Parameters
+#
+# [*username*]
+#   User's system username. Affects the location of the profile files. Defaults 
+#   to resources $title.
+# [*accounts*]
+#   A comma-separated list (with no spaces) of accounts to activate for this 
+#   profile. See thunderbird::account for details.
+# [*defaultaccount*]
+#   The default account (to show on startup).
+#
 define thunderbird::profile
 (
     $username = $title,

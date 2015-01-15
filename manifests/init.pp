@@ -16,9 +16,9 @@
 #   Debian and Ubuntu where the locales are packaged separately. Defining these 
 #   on other operating systems is harmless.
 # [*smtpservernames*]
-#   A comma-separated list of SMTP servers that should be active. This 
-#   information could be gathered from the $smtpservers hash, but this manual 
-#   approach was chosen for it's simplicity.
+#   A comma-separated list of SMTP servers that should be active. No spaces are 
+#   allowed between the entries. This information could be gathered from the 
+#   $smtpservers hash, but this manual approach was chosen for it's simplicity.
 # [*servers*]
 #   A hash of thunderbird::server resources to realize. These are common to all 
 #   users on the system.
