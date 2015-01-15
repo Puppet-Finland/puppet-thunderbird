@@ -33,6 +33,9 @@
 # [*smtpserverlogins*]
 #   A hash of thunderbird::smtpserverlogin resources to realize. These are 
 #   user-specific.
+# [*accounts*]
+#   A hash of thunderbird::account resources to realize. These are 
+#   user-specific.
 #
 # == Authors
 #

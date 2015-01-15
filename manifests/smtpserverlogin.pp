@@ -6,6 +6,7 @@
 define thunderbird::smtpserverlogin
 (
     $username,
+    $smtpserver,
     $smtpserver_username,
 )
 {
@@ -13,7 +14,7 @@ define thunderbird::smtpserverlogin
     include os::params
     include thunderbird::params
 
-    $id = $title
+    $id = $smtpserver
 
     # Ensure we're ready to modify user.js
     File <| tag == thunderbird-profile |>
