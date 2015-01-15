@@ -72,5 +72,15 @@ define thunderbird::profile
         tag => 'thunderbird-profile',
     }
 
-    File <| tag == thunderbird-profile |>
+    # Create the user.js file that overrides any settings in prefs.js on startup
+    @concat { "thunderbird-user.js-${username}":
+        path => "${profile_dir}/user.js",
+        ensure => present,
+        owner => $username,
+        warn => true,
+        mode => $::thunderbird::params::file_perms,
+        require => File["thunderbird-profile-${username}-${profilename}"],
+        tag => 'thunderbird-profile',        
+    }
+
 }

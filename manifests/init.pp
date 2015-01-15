@@ -24,6 +24,9 @@
 # [*profiles*]
 #   A hash of thunderbird::profile resources to realize. These are 
 #   user-specific.
+# [*identities*]
+#   A hash of thunderbird::identity resources to realize. These are 
+#   user-specific.
 #
 # == Authors
 #
@@ -40,7 +43,8 @@ class thunderbird
     $locales = {},
     $servers = {},
     $smtpservers = {},
-    $profiles = {}
+    $profiles = {},
+    $identities = {}
 
 ) inherits thunderbird::params
 {
@@ -55,6 +59,7 @@ if $manage == 'yes' {
             servers => $servers,
             smtpservers => $smtpservers,
             profiles => $profiles,
+            identities => $identities,
         }
     }
 }

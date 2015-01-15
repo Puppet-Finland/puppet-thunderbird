@@ -7,7 +7,8 @@ class thunderbird::config
 (
     $servers,
     $smtpservers,
-    $profiles
+    $profiles,
+    $identities
 )
 {
 
@@ -32,4 +33,5 @@ class thunderbird::config
 
     # Per-user settings
     create_resources('thunderbird::profile', $profiles)
+    create_resources('thunderbird::identity', $identities)
 }
