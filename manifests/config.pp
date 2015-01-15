@@ -9,7 +9,8 @@ class thunderbird::config
     $smtpservers,
     $profiles,
     $identities,
-    $serverlogins
+    $serverlogins,
+    $smtpserverlogins
 )
 {
 
@@ -36,4 +37,5 @@ class thunderbird::config
     create_resources('thunderbird::profile', $profiles)
     create_resources('thunderbird::identity', $identities)
     create_resources('thunderbird::serverlogin', $serverlogins)
+    create_resources('thunderbird::smtpserverlogin', $smtpserverlogins)
 }
