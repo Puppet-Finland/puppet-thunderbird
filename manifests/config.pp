@@ -9,10 +9,6 @@ class thunderbird::config
     $servers,
     $smtpservers,
     $profiles,
-    $identities,
-    $serverlogins,
-    $smtpserverlogins,
-    $accounts,
     $userconfigs
 )
 {
@@ -44,11 +40,9 @@ class thunderbird::config
     create_resources('thunderbird::server', $servers)
     create_resources('thunderbird::smtpserver', $smtpservers)
 
-    # Per-user settings
+    # Configure user's profile
     create_resources('thunderbird::profile', $profiles)
-    create_resources('thunderbird::identity', $identities)
-    create_resources('thunderbird::serverlogin', $serverlogins)
-    create_resources('thunderbird::smtpserverlogin', $smtpserverlogins)
-    create_resources('thunderbird::account', $accounts)
+
+    # Configure users' email accounts
     create_resources('thunderbird::userconfig', $userconfigs)
 }
