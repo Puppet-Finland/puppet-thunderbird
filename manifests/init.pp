@@ -2,10 +2,15 @@
 #
 # This class install and configures Mozilla Thunderbird. It makes heavy use of 
 # hash parameters to allow complex configurations on a per-user and per-email 
-# account basis. Typically all of the configuration would be placed high-up in 
+# account basis. Typically all of the configuration should be placed high-up in 
 # the hierarchy, so that every user on every desktop/laptop gets the same 
 # Mozilla Thunderbird configuration. The default configuration can then be 
 # overridden on a node-by-node basis.
+#
+# This module has been tested on Linux (Ubuntu 14.04) and Windows 7 64-bit. 
+# Other *NIX variants such as RedHat, Debian and FreeBSD as well as 32-bit 
+# Windows have not been tested, but should work out of the box or with minor 
+# modifications. Adding MacOS X support should be fairly straightforward.
 #
 # Currently there are a few limitations:
 #
