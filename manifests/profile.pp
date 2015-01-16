@@ -31,22 +31,24 @@ define thunderbird::profile
     if $osfamily == "windows" {
         $local_config_dir = "${::os::params::home_bs}\\${username}\\AppData\\Local\\Thunderbird" 
         $roaming_config_dir = "${::os::params::home_bs}\\${username}\\AppData\\Roaming\\Thunderbird" 
-        $profiles_dir = "${local_config_dir}\\Profiles"
+        $profiles_dir = "${roaming_config_dir}\\Profiles"
         $profile_dir = "${profiles_dir}\\${profilename}"
         $profiles_ini = "${roaming_config_dir}\\profiles.ini"
+        $profile_path = "Profiles/${profilename}"
+        $user_js = "${profile_dir}\\user.js"
 
         file { "thunderbird-local_config_dir-${username}":
             name => $local_config_dir,
             ensure => directory,
             owner => $username,
-            tag => 'thunderbird-profile',
+            source_permissions => $::thunderbird::params::source_permissions,
         }
 
         file { "thunderbird-roaming_config_dir-${username}":
             name => $roaming_config_dir,
             ensure => directory,
             owner => $username,
-            tag => 'thunderbird-profile',
+            source_permissions => $::thunderbird::params::source_permissions,
         }
 
     } else {
@@ -54,6 +56,8 @@ define thunderbird::profile
         $profiles_dir = "${config_dir}"
         $profile_dir = "${profiles_dir}/${profilename}"
         $profiles_ini = "${profiles_dir}/profiles.ini"
+        $profile_path = "${profilename}"
+        $user_js = "${profiles_dir}/user.js"
     }
 
     # Create user's profiles directory
@@ -62,7 +66,7 @@ define thunderbird::profile
         ensure => directory,
         owner => $username,
         mode => $::thunderbird::params::dir_perms,
-        tag => 'thunderbird-profile',
+        source_permissions => $::thunderbird::params::source_permissions,
     }
 
     # Create user's profile.ini
@@ -71,8 +75,8 @@ define thunderbird::profile
         content => template('thunderbird/profiles.ini.erb'),
         owner => $username,
         mode => $::thunderbird::params::file_perms,
+        source_permissions => $::thunderbird::params::source_permissions,
         require => File["thunderbird-profiles-${username}"],
-        tag => 'thunderbird-profile',
     }
 
     # Create a directory for this particular profile
@@ -81,19 +85,18 @@ define thunderbird::profile
         ensure => directory,
         owner => $username,
         mode => $::thunderbird::params::dir_perms,
+        source_permissions => $::thunderbird::params::source_permissions,
         require => File["thunderbird-profiles-${username}"],
-        tag => 'thunderbird-profile',
     }
 
     # Create the user.js file that overrides any settings in prefs.js on startup
     concat { "thunderbird-user.js-${username}":
-        path => "${profile_dir}/user.js",
+        path => "${user_js}",
         ensure => present,
         owner => $username,
         warn => true,
         mode => $::thunderbird::params::file_perms,
         require => File["thunderbird-profile-${username}-${profilename}"],
-        tag => 'thunderbird-profile',        
     }
 
     concat::fragment { "thunderbird-user.js-${username}-accountmananager":
