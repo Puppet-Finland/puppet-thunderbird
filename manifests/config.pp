@@ -12,7 +12,8 @@ class thunderbird::config
     $identities,
     $serverlogins,
     $smtpserverlogins,
-    $accounts
+    $accounts,
+    $userconfigs
 )
 {
 
@@ -49,4 +50,5 @@ class thunderbird::config
     create_resources('thunderbird::serverlogin', $serverlogins)
     create_resources('thunderbird::smtpserverlogin', $smtpserverlogins)
     create_resources('thunderbird::account', $accounts)
+    create_resources('thunderbird::userconfig', $userconfigs)
 }

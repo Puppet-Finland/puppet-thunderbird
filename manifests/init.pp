@@ -61,7 +61,8 @@ class thunderbird
     $identities = {},
     $serverlogins = {},
     $smtpserverlogins = {},
-    $accounts = {}
+    $accounts = {},
+    $userconfigs
 
 ) inherits thunderbird::params
 {
@@ -81,6 +82,7 @@ if $manage == 'yes' {
             serverlogins => $serverlogins,
             smtpserverlogins => $smtpserverlogins,
             accounts => $accounts,
+            userconfigs => $userconfigs,
         }
     }
 }
