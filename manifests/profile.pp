@@ -41,14 +41,12 @@ define thunderbird::profile
             name => $local_config_dir,
             ensure => directory,
             owner => $username,
-            source_permissions => $::thunderbird::params::source_permissions,
         }
 
         file { "thunderbird-roaming_config_dir-${username}":
             name => $roaming_config_dir,
             ensure => directory,
             owner => $username,
-            source_permissions => $::thunderbird::params::source_permissions,
         }
 
     } else {
@@ -66,7 +64,6 @@ define thunderbird::profile
         ensure => directory,
         owner => $username,
         mode => $::thunderbird::params::dir_perms,
-        source_permissions => $::thunderbird::params::source_permissions,
     }
 
     # Create user's profile.ini
@@ -75,7 +72,6 @@ define thunderbird::profile
         content => template('thunderbird/profiles.ini.erb'),
         owner => $username,
         mode => $::thunderbird::params::file_perms,
-        source_permissions => $::thunderbird::params::source_permissions,
         require => File["thunderbird-profiles-${username}"],
     }
 
@@ -85,7 +81,6 @@ define thunderbird::profile
         ensure => directory,
         owner => $username,
         mode => $::thunderbird::params::dir_perms,
-        source_permissions => $::thunderbird::params::source_permissions,
         require => File["thunderbird-profiles-${username}"],
     }
 
