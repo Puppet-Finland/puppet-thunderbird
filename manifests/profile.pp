@@ -55,7 +55,7 @@ define thunderbird::profile
         $profile_dir = "${profiles_dir}/${profilename}"
         $profiles_ini = "${profiles_dir}/profiles.ini"
         $profile_path = "${profilename}"
-        $user_js = "${profiles_dir}/user.js"
+        $user_js = "${profile_dir}/user.js"
     }
 
     # Create user's profiles directory
