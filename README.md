@@ -2,6 +2,6 @@
 
 A Puppet module for managing Mozilla Thunderbird
 
-# Documentation
+# usage
 
-* [Documentation for the main class](manifests/init.pp)
+* [Class documentation for the "thunderbird" class](manifests/init.pp)
