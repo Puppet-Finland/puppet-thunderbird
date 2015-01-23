@@ -9,7 +9,7 @@ A Puppet module for managing Mozilla Thunderbird
 * [Define: thunderbird::server](manifests/server.pp)
 * [Define: thunderbird::smtpserver](manifests/smtpserver.pp)
 * [Define: thunderbird::profile](manifests/profile.pp)
-* [Define: thunderbird::userconfig](manifests/profile.pp)
+* [Define: thunderbird::userconfig](manifests/userconfig.pp)
 
 # Dependencies
 
