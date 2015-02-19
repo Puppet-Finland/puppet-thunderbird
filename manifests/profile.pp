@@ -45,7 +45,12 @@ define thunderbird::profile
         }
 
     } else {
-        $thunderbird_dir = "${::os::params::home}/${username}/.thunderbird"
+
+        if $::operatingsystem == "Debian" {
+            $thunderbird_dir = "${::os::params::home}/${username}/.icedove"
+        } else {
+            $thunderbird_dir = "${::os::params::home}/${username}/.thunderbird"
+        }
         $profiles_dir = "${thunderbird_dir}"
         $profile_dir = "${profiles_dir}/${profilename}"
         $profiles_ini = "${profiles_dir}/profiles.ini"

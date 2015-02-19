@@ -21,12 +21,12 @@ This module has been tested on
 
 * Ubuntu 12.04 32-bit
 * Ubuntu 14.04 64-bit
+* Debian 8 64-bit
 * Windows 7 64-bit
 
 The following operating systems should work out of the box or with small 
 modifications:
 
-* Debian
 * RedHat/CentOS
 * FreeBSD
 

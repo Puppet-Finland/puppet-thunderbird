@@ -15,16 +15,17 @@ class thunderbird::params {
         }
         'Debian': {
             $package_provider = undef
-            $global_config = '/etc/thunderbird/syspref.js'
             $file_perms = 644
             $dir_perms = 755
  
             case $::operatingsystem {
                 'Debian': {
+                    $global_config = '/etc/icedove/pref/syspref.js'
                     $package_name = 'icedove'
                     $package_name_locale = 'icedove-l10n'
                 }
                 'Ubuntu': {
+                    $global_config = '/etc/thunderbird/syspref.js'
                     $package_name = 'thunderbird'
                     $package_name_locale = 'thunderbird-locale'
                 }
