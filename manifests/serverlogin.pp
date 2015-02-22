@@ -13,11 +13,12 @@
 # [*server_name*]
 #   The server's display name in Thunderbird.
 # [*server_realusername*]
-#   User's login name on the IMAP/POP server. Possibly redundant, but seems to 
-#   get set.
+#   User's login name on the IMAP/POP server.
 # [*server_username*]
 #   User's login name on the IMAP/POP server. Possibly redundant, but seems to 
 #   get set.
+# [*offline_download*]
+#   Keep local copies of emails on this account.
 #
 define thunderbird::serverlogin
 (
@@ -25,7 +26,8 @@ define thunderbird::serverlogin
     $server,
     $server_name,
     $server_realusername,
-    $server_username
+    $server_username,
+    $offline_download
 )
 {
 

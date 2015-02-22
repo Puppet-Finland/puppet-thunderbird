@@ -98,7 +98,7 @@
 #          fullname: 'John Doe'
 #          organization: ''
 #          server: 'gmail'
-#          server_username: 'john.doe'
+#          server_realusername: 'john.doe'
 #          smtpserver: 'gmail'
 #      john_rackspace:
 #          username: 'john'
