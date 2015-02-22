@@ -5,7 +5,7 @@
 #
 # == Parameters
 #
-# [*username*]
+# [*system_username*]
 #   User's system username.
 # [*server*]
 #   The server identifier to bind this login information with. See 
@@ -22,7 +22,7 @@
 #
 define thunderbird::serverlogin
 (
-    $username,
+    $system_username,
     $server,
     $server_name,
     $server_realusername,
@@ -36,10 +36,10 @@ define thunderbird::serverlogin
 
     $id = $title
 
-    concat::fragment { "thunderbird-user.js-${username}-serverlogin-${id}":
-        target => "thunderbird-user.js-${username}",
+    concat::fragment { "thunderbird-user.js-${system_username}-serverlogin-${id}":
+        target => "thunderbird-user.js-${system_username}",
         content => template('thunderbird/serverlogin.js.erb'),
-        owner => $username,
+        owner => $system_username,
         mode => $::thunderbird::params::file_perms,
     }
 }

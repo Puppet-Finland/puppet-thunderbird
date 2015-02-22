@@ -5,7 +5,7 @@
 #
 # == Parameters
 #
-# [*username*]
+# [*system_username*]
 #   User's system username.
 # [*server*]
 #   The server identifier (see thunderbird::server) to tie into this account.
@@ -15,7 +15,7 @@
 #
 define thunderbird::account
 (
-    $username,
+    $system_username,
     $server,
     $identities
 )
@@ -25,10 +25,10 @@ define thunderbird::account
 
     $id = $title
 
-    concat::fragment { "thunderbird-user.js-${username}-account-${id}":
-        target => "thunderbird-user.js-${username}",
+    concat::fragment { "thunderbird-user.js-${system_username}-account-${id}":
+        target => "thunderbird-user.js-${system_username}",
         content => template('thunderbird/account.js.erb'),
-        owner => $username,
+        owner => $system_username,
         mode => $::thunderbird::params::file_perms,
     }
 }

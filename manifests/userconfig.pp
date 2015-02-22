@@ -5,7 +5,7 @@
 #
 # == Parameters
 #
-# [*username*]
+# [*system_username*]
 #   User's system username. Affects file paths.
 # [*email*]
 #   Email address for this email account. This is reused in many places as a 
@@ -45,7 +45,7 @@
 #
 define thunderbird::userconfig
 (
-    $username,
+    $system_username,
     $email,
     $fullname,
     $organization = '',
@@ -62,14 +62,14 @@ define thunderbird::userconfig
 )
 {
     thunderbird::account { $account:
-        username => $username,
+        system_username => $system_username,
         server => $server,
         identities => $identities,
         tag => 'thunderbird',
     }
 
     thunderbird::serverlogin { $server:
-        username => $username,
+        system_username => $system_username,
         server => $server,
         server_username => $server_realusername,
         server_realusername => $server_realusername,
@@ -79,14 +79,14 @@ define thunderbird::userconfig
 
     if $configure_smtpserver {
         thunderbird::smtpserverlogin { $smtpserver:
-            username => $username,
+            system_username => $system_username,
             smtpserver => $smtpserver,
             smtpserver_username => $smtpserver_username,
         }
     }
 
     thunderbird::identity { $identity:
-        username => $username,
+        system_username => $system_username,
         fullname => $fullname,
         organization => $organization,
         smtpserver => $smtpserver,

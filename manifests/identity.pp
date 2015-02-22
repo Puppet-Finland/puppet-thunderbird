@@ -5,7 +5,7 @@
 #
 # == Parameters
 #
-# [*username*]
+# [*system_username*]
 #   User's system username.
 # [*fullname*]
 #   User's full name, e.g. "John Doe".
@@ -18,7 +18,7 @@
 #
 define thunderbird::identity
 (
-    $username,
+    $system_username,
     $fullname,
     $organization,
     $smtpserver,
@@ -30,10 +30,10 @@ define thunderbird::identity
 
     $id = $title
 
-    concat::fragment { "thunderbird-user.js-${username}-identity-${id}":
-        target => "thunderbird-user.js-${username}",
+    concat::fragment { "thunderbird-user.js-${system_username}-identity-${id}":
+        target => "thunderbird-user.js-${system_username}",
         content => template('thunderbird/identity.js.erb'),
-        owner => $username,
+        owner => $system_username,
         mode => $::thunderbird::params::file_perms,
     }
 }

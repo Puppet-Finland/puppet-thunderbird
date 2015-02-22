@@ -5,7 +5,7 @@
 #
 # == Paramaters
 #
-# [*username*]
+# [*system_username*]
 #   User's system username.
 # [*smtpserver*]
 #   The SMTP server identifier to bind this login information with. See 
@@ -15,7 +15,7 @@
 #
 define thunderbird::smtpserverlogin
 (
-    $username,
+    $system_username,
     $smtpserver,
     $smtpserver_username,
 )
@@ -26,10 +26,10 @@ define thunderbird::smtpserverlogin
 
     $id = $title
 
-    concat::fragment { "thunderbird-user.js-${username}-smtpserverlogin-${id}":
-        target => "thunderbird-user.js-${username}",
+    concat::fragment { "thunderbird-user.js-${system_username}-smtpserverlogin-${id}":
+        target => "thunderbird-user.js-${system_username}",
         content => template('thunderbird/smtpserverlogin.js.erb'),
-        owner => $username,
+        owner => $system_username,
         mode => $::thunderbird::params::file_perms,
     }
 }
