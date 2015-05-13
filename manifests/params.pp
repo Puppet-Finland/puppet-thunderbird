@@ -9,7 +9,12 @@ class thunderbird::params {
         'RedHat': {
             $package_name = 'thunderbird'
             $package_provider = undef
-            $global_config = '/etc/thunderbird/syspref.js'
+
+            $global_config = $::hardwaremodel ? {
+                'x86_64' => '/usr/lib64/thunderbird/defaults/pref/syspref.js',
+                'i686'   => '/usr/lib/thunderbird/defaults/pref/syspref.js',
+                default  => '/usr/lib/thunderbird/defaults/pref/syspref.js',
+            }
             $file_perms = 644
             $dir_perms = 755
         }
