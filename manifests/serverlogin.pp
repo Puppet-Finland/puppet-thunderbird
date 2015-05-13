@@ -30,16 +30,12 @@ define thunderbird::serverlogin
     $offline_download
 )
 {
-
-    include os::params
-    include thunderbird::params
+    include ::thunderbird::params
 
     $id = $title
 
     concat::fragment { "thunderbird-user.js-${system_username}-serverlogin-${id}":
-        target => "thunderbird-user.js-${system_username}",
+        target  => "thunderbird-user.js-${system_username}",
         content => template('thunderbird/serverlogin.js.erb'),
-        owner => $system_username,
-        mode => $::thunderbird::params::file_perms,
     }
 }

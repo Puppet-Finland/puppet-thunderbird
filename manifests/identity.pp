@@ -26,14 +26,12 @@ define thunderbird::identity
 )
 {
 
-    include thunderbird::params
+    include ::thunderbird::params
 
     $id = $title
 
     concat::fragment { "thunderbird-user.js-${system_username}-identity-${id}":
-        target => "thunderbird-user.js-${system_username}",
+        target  => "thunderbird-user.js-${system_username}",
         content => template('thunderbird/identity.js.erb'),
-        owner => $system_username,
-        mode => $::thunderbird::params::file_perms,
     }
 }

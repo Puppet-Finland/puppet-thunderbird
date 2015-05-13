@@ -10,30 +10,24 @@ class thunderbird::config
     $smtpservers,
     $profiles,
     $userconfigs
-)
+
+) inherits thunderbird::params
 {
-
-    include os::params
-    include thunderbird::params
-
     # System-wide configuration file. Fragments are added to this file as 
     # necessary.
     concat { 'thunderbird-syspref.js':
-        path => $::thunderbird::params::global_config,
-        ensure => present,
-        owner => $::os::params::adminuser,
-        group => $::os::params::admingroup,
-        warn => true,
-        mode => $::thunderbird::params::file_perms,
+        ensure  => present,
+        path    => $::thunderbird::params::global_config,
+        owner   => $::os::params::adminuser,
+        group   => $::os::params::admingroup,
+        warn    => true,
+        mode    => $::thunderbird::params::file_perms,
         require => Class['thunderbird::install'],
     }
 
     concat::fragment { "thunderbird-smtpservernames.js-${smtpservernames}":
-        target => 'thunderbird-syspref.js',
+        target  => 'thunderbird-syspref.js',
         content => template('thunderbird/smtpservernames.js.erb'),
-        owner => $::os::params::adminuser,
-        group => $::os::params::admigroup,
-        mode => $::thunderbird::params::file_perms,
     }
 
     # Generate system-wide settings

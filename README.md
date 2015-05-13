@@ -19,10 +19,10 @@ See [metadata.json](metadata.json).
 
 This module has been tested on
 
-* Ubuntu 12.04 32-bit
-* Ubuntu 14.04 64-bit
-* Debian 8 64-bit
-* Windows 7 64-bit
+* Ubuntu 12.04 and 14.04
+* Debian 8
+* Fedora 21
+* Windows 7
 
 The following operating systems should work out of the box or with small 
 modifications:

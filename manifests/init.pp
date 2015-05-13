@@ -121,7 +121,7 @@ class thunderbird
     $manage = 'yes',
     $manage_config = 'yes',
     $locales = {},
-    $smtpservernames = '',
+    $smtpservernames = undef,
     $servers = {},
     $smtpservers = {},
     $profiles = {},
@@ -132,16 +132,16 @@ class thunderbird
 
 if $manage == 'yes' {
 
-    include thunderbird::install
+    include ::thunderbird::install
     create_resources('thunderbird::locale', $locales)
 
     if $manage_config == 'yes' {
-        class { 'thunderbird::config':
+        class { '::thunderbird::config':
             smtpservernames => $smtpservernames,
-            servers => $servers,
-            smtpservers => $smtpservers,
-            profiles => $profiles,
-            userconfigs => $userconfigs,
+            servers         => $servers,
+            smtpservers     => $smtpservers,
+            profiles        => $profiles,
+            userconfigs     => $userconfigs,
         }
     }
 }

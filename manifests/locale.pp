@@ -15,12 +15,12 @@ define thunderbird::locale
     $id
 )
 {
-    include thunderbird::params
+    include ::thunderbird::params
 
     if $::osfamily == 'Debian' {
         package { "thunderbird-locale-${id}":
-            name => "${::thunderbird::params::package_name_locale}-${id}",
-            ensure => installed,
+            ensure  => installed,
+            name    => "${::thunderbird::params::package_name_locale}-${id}",
             require => Class['thunderbird::install'],
         }
     }

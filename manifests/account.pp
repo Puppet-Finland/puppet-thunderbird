@@ -21,14 +21,12 @@ define thunderbird::account
 )
 {
 
-    include thunderbird::params
+    include ::thunderbird::params
 
     $id = $title
 
     concat::fragment { "thunderbird-user.js-${system_username}-account-${id}":
-        target => "thunderbird-user.js-${system_username}",
+        target  => "thunderbird-user.js-${system_username}",
         content => template('thunderbird/account.js.erb'),
-        owner => $system_username,
-        mode => $::thunderbird::params::file_perms,
     }
 }

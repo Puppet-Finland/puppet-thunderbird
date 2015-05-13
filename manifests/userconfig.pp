@@ -12,6 +12,12 @@
 #   default value.
 # [*fullname*]
 #   User's full name. For example 'John Doe'.
+# [*server*]
+#   The identifier (not hostname) of the IMAP/POP server defined in 
+#   thunderbird::server that this account uses.
+# [*smtpserver*]
+#   The identifier (not hostname) of the SMTP server defined in 
+#   thunderbird::smtpserver that this account uses.
 # [*organization*]
 #   User's organization. Defaults to empty string.
 # [*account*]
@@ -21,9 +27,6 @@
 #   identity per account is currently supported.
 # [*identities*]
 #   The identities to bind to this account. The default value is $title.
-# [*server*]
-#   The identifier (not hostname) of the IMAP/POP server defined in 
-#   thunderbird::server that this account uses.
 # [*server_name*]
 #   The user-visible IMAP/POP server name in Thunderbird. Defaults to $email, 
 #   which is probably ok in most cases.
@@ -34,9 +37,6 @@
 # [*offline_download*]
 #   Keep local copies of emails on this account. Valid values are 'true'
 #   (default) and 'false'.
-# [*smtpserver*]
-#   The identifier (not hostname) of the SMTP server defined in 
-#   thunderbird::smtpserver that this account uses.
 # [*smtpserver_username*] 
 #   Login name for the SMTP server. Defaults to $email.
 # [*configure_smtpserver*]
@@ -48,48 +48,48 @@ define thunderbird::userconfig
     $system_username,
     $email,
     $fullname,
-    $organization = '',
+    $server,
+    $smtpserver,
+    $organization = undef,
     $account = $title,
     $identity = $title,
     $identities = $title,
-    $server,
     $server_name = $email,
     $server_realusername = $email,
-    $offline_download = 'true',
-    $smtpserver,
+    $offline_download = true,
     $smtpserver_username = $email,
     $configure_smtpserver = true
 )
 {
     thunderbird::account { $account:
         system_username => $system_username,
-        server => $server,
-        identities => $identities,
-        tag => 'thunderbird',
+        server          => $server,
+        identities      => $identities,
+        tag             => 'thunderbird',
     }
 
     thunderbird::serverlogin { $server:
-        system_username => $system_username,
-        server => $server,
-        server_username => $server_realusername,
+        system_username     => $system_username,
+        server              => $server,
+        server_username     => $server_realusername,
         server_realusername => $server_realusername,
-        server_name => $server_name,
-        offline_download => $offline_download,
+        server_name         => $server_name,
+        offline_download    => $offline_download,
     }
 
     if $configure_smtpserver {
         thunderbird::smtpserverlogin { $smtpserver:
-            system_username => $system_username,
-            smtpserver => $smtpserver,
+            system_username     => $system_username,
+            smtpserver          => $smtpserver,
             smtpserver_username => $smtpserver_username,
         }
     }
 
     thunderbird::identity { $identity:
         system_username => $system_username,
-        fullname => $fullname,
-        organization => $organization,
-        smtpserver => $smtpserver,
-        useremail => $email,
+        fullname        => $fullname,
+        organization    => $organization,
+        smtpserver      => $smtpserver,
+        useremail       => $email,
     }
 }

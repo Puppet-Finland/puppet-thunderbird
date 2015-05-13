@@ -27,17 +27,12 @@ define thunderbird::smtpserver
     $description = 'No description'
 )
 {
-
-    include os::params
-    include thunderbird::params
+    include ::thunderbird::params
 
     $id = $title
 
     concat::fragment { "thunderbird-smtpserver.js-${id}":
-        target => 'thunderbird-syspref.js',
+        target  => 'thunderbird-syspref.js',
         content => template('thunderbird/smtpserver.js.erb'),
-        owner => $::os::params::adminuser,
-        group => $::os::params::admigroup,
-        mode => $::thunderbird::params::file_perms,
     }
 }
