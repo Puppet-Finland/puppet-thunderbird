@@ -1,4 +1,4 @@
-user_pref("mail.identity.<%= id %>.fullName", "<%= fullname %>");
-user_pref("mail.identity.<%= id %>.organization", "<%if @organization %><%= organization %><% end -%>");
-user_pref("mail.identity.<%= id %>.smtpServer", "<%= smtpserver %>");
-user_pref("mail.identity.<%= id %>.useremail", "<%= useremail %>");
+user_pref("mail.identity.<%= @id %>.fullName", "<%= @fullname %>");
+user_pref("mail.identity.<%= @id %>.organization", "<%if @organization %><%= @organization %><% end -%>");
+user_pref("mail.identity.<%= @id %>.smtpServer", "<%= @smtpserver %>");
+user_pref("mail.identity.<%= @id %>.useremail", "<%= @useremail %>");

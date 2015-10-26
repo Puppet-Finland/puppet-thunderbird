@@ -1,6 +1,6 @@
 {
   "name": "puppetfinland-thunderbird",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Puppet-Finland team",
   "license": "BSD license",
   "summary": "Setup Mozilla Thunderbird",
