@@ -16,12 +16,12 @@ class thunderbird::params {
                 'i686'   => '/usr/lib/thunderbird/defaults/pref/syspref.js',
                 default  => '/usr/lib/thunderbird/defaults/pref/syspref.js',
             }
-            $file_perms = 644
-            $dir_perms = 755
+            $file_perms = '0644'
+            $dir_perms = '0755'
         }
         'Debian': {
-            $file_perms = 644
-            $dir_perms = 755
+            $file_perms = '0644'
+            $dir_perms = '0755'
 
             case $::operatingsystem {
                 'Debian': {
@@ -42,8 +42,8 @@ class thunderbird::params {
         'FreeBSD': {
             $package_name = 'thunderbird'
             $global_config = '/etc/thunderbird/syspref.js'
-            $file_perms = 644
-            $dir_perms = 755
+            $file_perms = '0644'
+            $dir_perms = '0755'
         }
         'Windows': {
             $package_name = 'thunderbird'
