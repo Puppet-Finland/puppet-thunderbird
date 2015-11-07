@@ -15,6 +15,9 @@
 #   The SMTP server this user/identity users.
 # [*useremail*]
 #   The email address of this user/identity.
+# [*compose_html*]
+#   Whether to compose message in HTML or not. Valid values are true 
+#   and false.
 #
 define thunderbird::identity
 (
@@ -22,7 +25,8 @@ define thunderbird::identity
     $fullname,
     $organization,
     $smtpserver,
-    $useremail
+    $useremail,
+    $compose_html
 )
 {
 

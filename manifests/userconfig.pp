@@ -42,7 +42,11 @@
 # [*configure_smtpserver*]
 #   Configure a new SMTP server. Setting this to false allows reusing the same 
 #   SMTP server for several email accounts. Defaults value is true.
+# [*compose_html*]
+#   Whether to compose message in HTML or not. Valid values are true (default)
+#   and false.
 #
+
 define thunderbird::userconfig
 (
     $system_username,
@@ -58,9 +62,14 @@ define thunderbird::userconfig
     $server_realusername = $email,
     $offline_download = true,
     $smtpserver_username = $email,
-    $configure_smtpserver = true
+    $configure_smtpserver = true,
+    $compose_html = true
 )
 {
+    validate_bool($offline_download)
+    validate_bool($configure_smtpserver)
+    validate_bool($compose_html)
+
     thunderbird::account { $account:
         system_username => $system_username,
         server          => $server,
@@ -91,5 +100,6 @@ define thunderbird::userconfig
         organization    => $organization,
         smtpserver      => $smtpserver,
         useremail       => $email,
+        compose_html    => $compose_html,
     }
 }
