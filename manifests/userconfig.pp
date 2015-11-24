@@ -66,7 +66,6 @@ define thunderbird::userconfig
 )
 {
     validate_bool($configure_smtpserver)
-    validate_bool($compose_html)
 
     # After Puppet 4.3.0 class parameters can't default to values of other class 
     # parameters like this:

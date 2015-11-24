@@ -29,6 +29,7 @@ define thunderbird::identity
     $compose_html
 )
 {
+    validate_bool($compose_html)
 
     include ::thunderbird::params
 
