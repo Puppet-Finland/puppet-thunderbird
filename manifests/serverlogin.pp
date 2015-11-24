@@ -34,6 +34,9 @@ define thunderbird::serverlogin
 
     $id = $title
 
+    validate_bool($offline_download)
+    $offline_download_str = bool2str($offline_download)
+
     concat::fragment { "thunderbird-user.js-${system_username}-serverlogin-${id}":
         target  => "thunderbird-user.js-${system_username}",
         content => template('thunderbird/serverlogin.js.erb'),

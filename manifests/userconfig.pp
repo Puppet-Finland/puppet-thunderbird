@@ -35,8 +35,8 @@
 #   example this should be set to $email minus the domain part (e.g. 
 #   "john.doe").
 # [*offline_download*]
-#   Keep local copies of emails on this account. Valid values are 'true'
-#   (default) and 'false'.
+#   Keep local copies of emails on this account. Valid values are true (default) 
+#   and false.
 # [*smtpserver_username*] 
 #   Login name for the SMTP server. Defaults to $email.
 # [*configure_smtpserver*]
@@ -46,7 +46,6 @@
 #   Whether to compose message in HTML or not. Valid values are true (default)
 #   and false.
 #
-
 define thunderbird::userconfig
 (
     $system_username,
@@ -66,7 +65,6 @@ define thunderbird::userconfig
     $compose_html = true
 )
 {
-    validate_bool($offline_download)
     validate_bool($configure_smtpserver)
     validate_bool($compose_html)
 
