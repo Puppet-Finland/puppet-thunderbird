@@ -57,16 +57,36 @@ define thunderbird::userconfig
     $account = $title,
     $identity = $title,
     $identities = $title,
-    $server_name = $email,
-    $server_realusername = $email,
+    $server_name = undef,
+    $server_realusername = undef,
     $offline_download = true,
-    $smtpserver_username = $email,
+    $smtpserver_username = undef,
     $configure_smtpserver = true,
     $compose_html = true
 )
 {
     validate_bool($configure_smtpserver)
     validate_bool($compose_html)
+
+    # After Puppet 4.3.0 class parameters can't default to values of other class 
+    # parameters like this:
+    #
+    #     $server_name = $email
+    #
+    # So we need to set the default parameters here instead
+    #
+    $server_name_tmp = $server_name ? {
+        undef   => $email,
+        default => $server_name,
+    }
+    $server_realusername_tmp = $server_realusername ? {
+        undef   => $email,
+        default => $server_realusername,
+    }
+    $smtpserver_username_tmp = $smtpserver_username ? {
+        undef   => $email,
+        default => $smtpserver_username,
+    }
 
     thunderbird::account { $account:
         system_username => $system_username,
@@ -78,9 +98,9 @@ define thunderbird::userconfig
     thunderbird::serverlogin { $server:
         system_username     => $system_username,
         server              => $server,
-        server_username     => $server_realusername,
-        server_realusername => $server_realusername,
-        server_name         => $server_name,
+        server_username     => $server_realusername_tmp,
+        server_realusername => $server_realusername_tmp,
+        server_name         => $server_name_tmp,
         offline_download    => $offline_download,
     }
 
@@ -88,7 +108,7 @@ define thunderbird::userconfig
         thunderbird::smtpserverlogin { $smtpserver:
             system_username     => $system_username,
             smtpserver          => $smtpserver,
-            smtpserver_username => $smtpserver_username,
+            smtpserver_username => $smtpserver_username_tmp,
         }
     }
 
