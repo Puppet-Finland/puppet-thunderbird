@@ -13,13 +13,22 @@ class thunderbird::config
 
 ) inherits thunderbird::params
 {
+
+    if $::kernel == 'windows' {
+        $owner = undef
+        $group = undef
+    } else {
+        $owner = $::os::params::adminuser
+        $group = $::os::params::admingroup
+    }
+
     # System-wide configuration file. Fragments are added to this file as 
     # necessary.
     concat { 'thunderbird-syspref.js':
         ensure  => present,
         path    => $::thunderbird::params::global_config,
-        owner   => $::os::params::adminuser,
-        group   => $::os::params::admingroup,
+        owner   => $owner,
+        group   => $group,
         warn    => true,
         mode    => $::thunderbird::params::file_perms,
         require => Class['thunderbird::install'],
