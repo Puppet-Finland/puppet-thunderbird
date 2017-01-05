@@ -18,23 +18,23 @@
 #   User's login name on the IMAP/POP server. Possibly redundant, but seems to 
 #   get set.
 # [*offline_download*]
-#   Keep local copies of emails on this account.
+#   Keep local copies of emails on this account. Valid values are true and 
+#   false.
 #
 define thunderbird::serverlogin
 (
-    $system_username,
-    $server,
-    $server_name,
-    $server_realusername,
-    $server_username,
-    $offline_download
+    String  $system_username,
+    String  $server,
+    String  $server_name,
+    String  $server_realusername,
+    String  $server_username,
+    Boolean $offline_download
 )
 {
     include ::thunderbird::params
 
     $id = $title
 
-    validate_bool($offline_download)
     $offline_download_str = bool2str($offline_download)
 
     concat::fragment { "thunderbird-user.js-${system_username}-serverlogin-${id}":

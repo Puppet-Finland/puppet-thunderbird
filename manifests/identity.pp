@@ -21,12 +21,12 @@
 #
 define thunderbird::identity
 (
-    $system_username,
-    $fullname,
-    $organization,
-    $smtpserver,
-    $useremail,
-    $compose_html
+    String  $system_username,
+    String  $fullname,
+    String  $organization,
+    String  $smtpserver,
+    String  $useremail,
+    Boolean $compose_html
 )
 {
     validate_bool($compose_html)

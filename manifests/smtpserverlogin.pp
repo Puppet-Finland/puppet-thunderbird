@@ -15,9 +15,9 @@
 #
 define thunderbird::smtpserverlogin
 (
-    $system_username,
-    $smtpserver,
-    $smtpserver_username,
+    String $system_username,
+    String $smtpserver,
+    String $smtpserver_username,
 )
 {
     include ::thunderbird::params

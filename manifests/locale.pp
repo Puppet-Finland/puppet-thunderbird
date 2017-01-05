@@ -12,7 +12,7 @@
 #
 define thunderbird::locale
 (
-    $id
+    String $id
 )
 {
     include ::thunderbird::params

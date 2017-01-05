@@ -25,12 +25,12 @@
 # == Parameters
 #
 # [*manage*]
-#   Manage Mozilla Thunderbird using this module. Valid values 'yes' (default) 
-#   and 'no'. This is primarily needed with Hiera where excluding classes 
-#   inherited from the lower levels in the hierarchy is not possible.
+#   Manage Mozilla Thunderbird using this module. Valid values are true 
+#   (default) and false. This is primarily needed with Hiera where excluding 
+#   classes inherited from the lower levels in the hierarchy is not possible.
 # [*manage_config*]
-#   Manage Mozilla Thunderbird configuration. Valid values 'yes' (default) and 
-#   'no'.
+#   Manage Mozilla Thunderbird configuration. Valid values true (default) and 
+#   false.
 # [*locales*]
 #   A hash of thunderbird::locale resources to realize. Currently only needed on 
 #   Debian and Ubuntu where the locales are packaged separately. Defining these 
@@ -118,24 +118,24 @@
 #
 class thunderbird
 (
-    $manage = 'yes',
-    $manage_config = 'yes',
-    $locales = {},
-    $smtpservernames = undef,
-    $servers = {},
-    $smtpservers = {},
-    $profiles = {},
-    $userconfigs = {}
+    Boolean $manage = true,
+    Boolean $manage_config = true,
+    Hash    $locales = {},
+            $smtpservernames = undef,
+            $servers = {},
+            $smtpservers = {},
+            $profiles = {},
+            $userconfigs = {}
 
 ) inherits thunderbird::params
 {
 
-if $manage == 'yes' {
+if $manage {
 
     include ::thunderbird::install
     create_resources('thunderbird::locale', $locales)
 
-    if $manage_config == 'yes' {
+    if $manage_config {
         class { '::thunderbird::config':
             smtpservernames => $smtpservernames,
             servers         => $servers,

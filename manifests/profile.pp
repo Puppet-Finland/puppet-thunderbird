@@ -17,9 +17,9 @@
 #
 define thunderbird::profile
 (
-    $accounts,
-    $defaultaccount,
-    $system_username = $title
+    String $accounts,
+    String $defaultaccount,
+    String $system_username = $title
 )
 {
     include ::thunderbird::params

@@ -5,11 +5,11 @@
 #
 class thunderbird::config
 (
-    $smtpservernames,
-    $servers,
-    $smtpservers,
-    $profiles,
-    $userconfigs
+    String $smtpservernames,
+    Hash   $servers,
+    Hash   $smtpservers,
+    Hash   $profiles,
+    Hash   $userconfigs
 
 ) inherits thunderbird::params
 {

@@ -15,9 +15,9 @@
 #
 define thunderbird::account
 (
-    $system_username,
-    $server,
-    $identities
+    String $system_username,
+    String $server,
+    String $identities
 )
 {
 
