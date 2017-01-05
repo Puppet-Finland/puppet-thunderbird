@@ -10,6 +10,7 @@ class thunderbird::params {
     case $::osfamily {
         'RedHat': {
             $package_name = 'thunderbird'
+            $package_require = undef
 
             $global_config = $::hardwaremodel ? {
                 'x86_64' => '/usr/lib64/thunderbird/defaults/pref/syspref.js',
@@ -20,6 +21,7 @@ class thunderbird::params {
             $dir_perms = '0755'
         }
         'Debian': {
+            $package_require = undef
             $file_perms = '0644'
             $dir_perms = '0755'
 
@@ -41,12 +43,14 @@ class thunderbird::params {
         }
         'FreeBSD': {
             $package_name = 'thunderbird'
+            $package_require = undef
             $global_config = '/etc/thunderbird/syspref.js'
             $file_perms = '0644'
             $dir_perms = '0755'
         }
         'Windows': {
             $package_name = 'thunderbird'
+            $package_require = Class['chocolatey']
             $global_config = 'C:\\Program Files (x86)\\Mozilla Thunderbird\\defaults\\pref\\syspref.js'
             $file_perms = undef
             $dir_perms = undef
