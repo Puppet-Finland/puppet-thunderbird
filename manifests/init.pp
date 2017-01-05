@@ -132,6 +132,7 @@ class thunderbird
 
 if $manage {
 
+    include ::thunderbird::prequisites
     include ::thunderbird::install
     create_resources('thunderbird::locale', $locales)
 
