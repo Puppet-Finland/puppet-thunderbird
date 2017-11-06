@@ -94,7 +94,7 @@ See [metadata.json](metadata.json).
 This module has been tested on
 
 * Ubuntu 12.04 and 14.04
-* Debian 8
+* Debian 9
 * Fedora 21
 * Windows 7
 
