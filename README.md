@@ -7,10 +7,10 @@ high-up in the hierarchy, so that every user on every desktop/laptop gets the
 same Mozilla Thunderbird configuration. The default configuration can then be 
 overridden on a node-by-node basis.
 
-This module has been tested on Linux (Ubuntu 14.04) and Windows 7 64-bit. Other 
-*NIX variants such as RedHat, Debian and FreeBSD as well as 32-bit Windows have 
-not been tested, but should work out of the box or with minor modifications. 
-Adding MacOS X support should be fairly straightforward.
+This module has been tested on Linux (Ubuntu 14.04, Debian 8-9) and Windows 7 
+64-bit. Other *NIX variants such as RedHat, Debian and FreeBSD as well as 32-bit 
+Windows have not been tested, but should work out of the box or with minor 
+modifications. Adding MacOS X support should be fairly straightforward.
 
 Currently there are a few limitations:
 
@@ -76,7 +76,7 @@ Example usage of the class in Hiera:
             server: 'rackspace'
             smtpserver: 'rackspace'
 
-For details see
+For details see these manifests:
 
 * [Class: thunderbird](manifests/init.pp)
 * [Define: thunderbird::locale](manifests/locale.pp)
@@ -85,23 +85,3 @@ For details see
 * [Define: thunderbird::profile](manifests/profile.pp)
 * [Define: thunderbird::userconfig](manifests/userconfig.pp)
 
-# Dependencies
-
-See [metadata.json](metadata.json).
-
-# Operating system support
-
-This module has been tested on
-
-* Ubuntu 12.04 and 14.04
-* Debian 9
-* Fedora 21
-* Windows 7
-
-The following operating systems should work out of the box or with small 
-modifications:
-
-* RedHat/CentOS
-* FreeBSD
-
-For details see [params.pp](manifests/params.pp).
