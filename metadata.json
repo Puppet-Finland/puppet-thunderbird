@@ -1,6 +1,6 @@
 {
   "name": "puppetfinland-thunderbird",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Puppet-Finland team",
   "summary": "Install Mozilla Thunderbird and configure email accounts for users",
   "license": "BSD-2-Clause",
