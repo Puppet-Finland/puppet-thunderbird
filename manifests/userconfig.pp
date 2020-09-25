@@ -94,7 +94,7 @@ define thunderbird::userconfig
         tag             => 'thunderbird',
     }
 
-    thunderbird::serverlogin { $server:
+    thunderbird::serverlogin { "${server}-${system_username}":
         system_username     => $system_username,
         server              => $server,
         server_username     => $server_realusername_tmp,
@@ -104,7 +104,7 @@ define thunderbird::userconfig
     }
 
     if $configure_smtpserver {
-        thunderbird::smtpserverlogin { $smtpserver:
+        thunderbird::smtpserverlogin { "${smtpserver}-${system_username}":
             system_username     => $system_username,
             smtpserver          => $smtpserver,
             smtpserver_username => $smtpserver_username_tmp,
